@@ -13,7 +13,7 @@ Tag.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    tag: {
+    tag_name: {
       type: DataTypes.STRING
     }
   },
