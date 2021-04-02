@@ -7,17 +7,15 @@ router.get('/', async (req, res) => {
   // find all tags
   // be sure to include its associated Product data
   try {
-    const tagData = await Tag.findAll(req.params.id, {
-      include: [{ model: Product, through: ProductTag, as: 'tag_products' }]
+    const tagData = await Tag.findAll({
+      include: [{
+        model: Product,
+        as: 'tag_to_product',
+      }]
     });
-
-    if (!tagData) {
-      res.status(404).json({ message: 'No traveller found with this id!' });
-      return;
-    }
-
     res.status(200).json(tagData);
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 
